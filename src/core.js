@@ -980,8 +980,11 @@ $.extend( $.validator, {
 				}
 
 				// Link error back to the element
-				if ( error.is( "label" ) ) {
-
+				// @change - aria-describedby shouldn't be added when we have an aria-label already.
+				if ($(element).attr("aria-label")) {
+					// don't add an aria-describedby here.
+				}
+                else if ( error.is( "label" ) ) {
 					// If the error is a label, then associate using 'for'
 					error.attr( "for", elementID );
 
